@@ -1,14 +1,12 @@
-FROM continuumio/miniconda3
+FROM mambaorg/micromamba:1.5.8-lunar
 
 WORKDIR /app
 
 COPY requirements.txt .
 
-RUN conda install -y conda-libmamba-solver
+RUN mamba create -n env
 
-RUN conda create -n env
-
-RUN conda install -y -n env -c conda-forge -c bioconda --file requirements.txt --solver=libmamba
+RUN mamba install -y -n env -c conda-forge -c bioconda --file requirements.txt --solver=libmamba
 
 
 RUN echo "source activate env" > ~/.bashrc
