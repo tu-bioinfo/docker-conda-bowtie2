@@ -4,9 +4,9 @@ WORKDIR /app
 
 COPY requirements.txt .
 
-RUN mamba create -n env
+RUN micromamba create -n env
 
-RUN mamba install -y -n env -c conda-forge -c bioconda --file requirements.txt --solver=libmamba
+RUN micromamba install -y -n env -c conda-forge -c bioconda --file requirements.txt
 
 
 RUN echo "source activate env" > ~/.bashrc
